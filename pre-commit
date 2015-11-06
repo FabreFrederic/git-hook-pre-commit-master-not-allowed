@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# pre-commit hook
+#
+# This hook prevent commits on the master branch
+#
+# This file must be named pre-commit and be saved in your local repository, in the .git/hooks folder
+# Run "chmod +x post-receive" to make it executable.
+# 
+# Github : https://github.com/FabreFrederic/git-hook-pre-commit-master-not-allowed
+# 
+
+echo "Local pre-commit hook"
+
+if [ $(git rev-parse --abbrev-ref=strict HEAD) = "master" ]; then
+  echo "You are not allowed to commit on the master branch"
+  echo "You can force the commit by adding --no-verify to the commit git command"
+  exit 1
+fi
+exit 0
